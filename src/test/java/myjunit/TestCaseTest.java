@@ -1,6 +1,7 @@
 package myjunit;
 
 import myjunit.assertion.Assert;
+import myjunit.result.TestResult;
 
 public class TestCaseTest extends TestCase {
 
@@ -8,18 +9,29 @@ public class TestCaseTest extends TestCase {
         super(testCaseName);
     }
 
+    private static long base;
+
+    @Override
+    public void before() {
+        base = 10;
+    }
+
     public void runTest () {
-        long sum = 10+10;
+        before();
+        long sum = 10+base;
         Assert.assertTrue(sum == 20);
     }
 
     public void runTestMinus() {
-        long minus = 100-10;
+        before();
+        long minus = 100-base;
         Assert.assertTrue(minus == 90);
     }
 
     public static void main(String[] args) {
-        new TestCaseTest("runTest").run();
-        new TestCaseTest("runTestMinus").run();
+        TestResult testResult = new TestResult();
+        new TestCaseTest("runTest").run(testResult);
+        new TestCaseTest("runTestMinus").run(testResult);
+        testResult.printCount();
     }
 }
