@@ -27,9 +27,13 @@ public class TestCaseTest extends TestCase {
     }
 
     public static void main(String[] args) {
+        TestSuite testSuite = new TestSuite();
+        testSuite.addTestCase(new TestCaseTest("runTest"));
+        testSuite.addTestCase(new TestCaseTest("runTestMinus"));
+
         TestResult testResult = new TestResult();
-        new TestCaseTest("runTest").run(testResult);
-        new TestCaseTest("runTestMinus").run(testResult);
+        testSuite.run(testResult);
+
         testResult.printCount();
     }
 }

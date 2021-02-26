@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public abstract class TestCase {
+public abstract class TestCase implements Test {
 
     private static final Logger logger = LoggerFactory.getLogger(TestCase.class);
 
